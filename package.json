@@ -4,7 +4,7 @@
   "description": "Recruitment test for ADEO",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha app.test.js"
   },
   "keywords": [
     "Node.JS",
@@ -12,5 +12,8 @@
     "interface"
   ],
   "author": "Sébastien CORNUEL",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
 }

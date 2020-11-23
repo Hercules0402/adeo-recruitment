@@ -40,6 +40,7 @@ function help() {
 /**
  * Filter function. Filters data with the pattern. The order is kept intact and print the result only if the result isn't empty.
  * @param pattern: pattern to use for filtering the data.
+ * @returns filter array
  */
 function filter(pattern) {
     const countries = data['data'];
@@ -59,14 +60,13 @@ function filter(pattern) {
             filterArray.push(country);
         }
     }
-    if (filterArray.length > 0) {
-        console.dir(filterArray, {depth: null, colors: true, compact: false});
-    }
+    return filterArray;
 }
 
 /**
  * Count function. Print the counts of People and Animals by counting the number of children and appending it in the
  * name, eg. `Satanwi [2]`
+ * @returns array
  */
 function count() {
     for (let i = 0; i < data['data'].length; i++) {
@@ -75,7 +75,7 @@ function count() {
         }
         data['data'][i]['name'] += ` [${data['data'][i]['people'].length}]`;
     }
-    console.dir(data['data'], {depth: null, colors: true, compact: false});
+    return data['data'];
 }
 
 /**
@@ -84,10 +84,13 @@ function count() {
  */
 function main(args) {
     if ('filter' in args) {
-        filter(args['filter']);
+        const filterArray = filter(args['filter']);
+        if (filterArray.length > 0) {
+            console.dir(filterArray, {depth: null, colors: true, compact: false});
+        }
     }
     else if ('count' in args) {
-        count();
+        console.dir(count(), {depth: null, colors: true, compact: false});
     }
     else if ('help' in args || 'h' in args) {
         help();
@@ -97,4 +100,8 @@ function main(args) {
 }
 
 main(getArgs());
+
+module.exports = {
+    filter, count
+}
 
