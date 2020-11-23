@@ -43,13 +43,7 @@ function help() {
  */
 function filter(pattern) {
     const countries = data['data'];
-    // const d = data['data'][0];
-    // d['people'] = [d['people'][0]];
-    // console.log(d);
     const filterArray = [];
-    // filterArray.push({name: 'r', people:[]});
-    // console.log(filterArray);
-    // const filterArray = data['data'].filter(country => country.people.filter(people => people.animals.filter(animal => animal.name.toLowerCase().includes("ry"))));
     for (let i = 0; i < countries.length; i++) {
         const country = {name: countries[i]['name'], people: []};
         for (let j = 0 ; j < countries[i]['people'].length; j++) {
@@ -71,6 +65,20 @@ function filter(pattern) {
 }
 
 /**
+ * Count function. Print the counts of People and Animals by counting the number of children and appending it in the
+ * name, eg. `Satanwi [2]`
+ */
+function count() {
+    for (let i = 0; i < data['data'].length; i++) {
+        for (let j = 0 ; j < data['data'][i]['people'].length; j++) {
+            data['data'][i]['people'][j]['name'] += ` [${data['data'][i]['people'][j]['animals'].length}]`;
+        }
+        data['data'][i]['name'] += ` [${data['data'][i]['people'].length}]`;
+    }
+    console.dir(data['data'], {depth: null, colors: true, compact: false});
+}
+
+/**
  * Main function. This function calls a specific function according to the arguments provided.
  * @param args: arguments to provide in object format
  */
@@ -78,8 +86,13 @@ function main(args) {
     if ('filter' in args) {
         filter(args['filter']);
     }
-    if ('help' in args || 'h' in args) {
+    else if ('count' in args) {
+        count();
+    }
+    else if ('help' in args || 'h' in args) {
         help();
+    } else {
+        console.log('Invalid command');
     }
 }
 
