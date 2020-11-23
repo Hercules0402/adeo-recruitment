@@ -1,0 +1,16 @@
+{
+  "name": "adeo-recruitment",
+  "version": "1.0.0",
+  "description": "Recruitment test for ADEO",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.JS",
+    "command-line",
+    "interface"
+  ],
+  "author": "Sébastien CORNUEL",
+  "license": "ISC"
+}
